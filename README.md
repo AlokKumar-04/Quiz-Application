@@ -520,7 +520,6 @@ python manage.py collectstatic
 - [ ] Email notifications
 - [ ] Certificate generation
 - [ ] Quiz recommendations based on performance
-- [ ] Mobile application (React Native)
 - [ ] Real-time multiplayer quizzes
 - [ ] Quiz analytics dashboard
 - [ ] Export results to PDF/Excel
@@ -558,25 +557,15 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 👥 Authors
 
-- **Your Name** - *Initial work* - [YourGitHub](https://github.com/yourusername)
-
----
-
-## 🙏 Acknowledgments
-
-- Django Documentation
-- Bootstrap Documentation
-- Font Awesome Icons
-- Stack Overflow Community
-- All contributors and testers
+- **Alok Kumar Panda** - *Initial work* - [GitHub](https://github.com/AlokKumar-04)
 
 ---
 
 ## 📞 Contact & Support
 
-- **Email**: your.email@example.com
-- **GitHub**: [@yourusername](https://github.com/yourusername)
-- **Issues**: [GitHub Issues](https://github.com/yourusername/quiz-app/issues)
+- **Email**: alokkumarpanda72@gmail.com
+- **GitHub**: [@AlokKumar-04](https://github.com/AlokKumar-04)
+- **Issues**: [GitHub Issues](https://github.com/AlokKumar-04/Quiz-Application/issues)
 
 ---
 
