@@ -119,8 +119,8 @@ Detailed results with performance analysis and review options.
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/quiz-app.git
-   cd quiz-app
+   git clone https://github.com/AlokKumar-04/Quizz-Application.git
+   cd Quizz-Application
    ```
 
 2. **Create and activate virtual environment**
@@ -520,7 +520,6 @@ python manage.py collectstatic
 - [ ] Email notifications
 - [ ] Certificate generation
 - [ ] Quiz recommendations based on performance
-- [ ] Mobile application (React Native)
 - [ ] Real-time multiplayer quizzes
 - [ ] Quiz analytics dashboard
 - [ ] Export results to PDF/Excel
@@ -558,7 +557,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 👥 Authors
 
-- **Your Name** - *Initial work* - [YourGitHub](https://github.com/yourusername)
+- **Your Name** - *Initial work* - [YourGitHub](https://github.com/AlokKumar-04)
 
 ---
 
@@ -575,8 +574,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 📞 Contact & Support
 
 - **Email**: your.email@example.com
-- **GitHub**: [@yourusername](https://github.com/yourusername)
-- **Issues**: [GitHub Issues](https://github.com/yourusername/quiz-app/issues)
+- **GitHub**: [@yourusername](https://github.com/AlokKumar-04)
+- **Issues**: [GitHub Issues](https://github.com/AlokKumar-04/Quizz-Application/issues)
 
 ---
 
