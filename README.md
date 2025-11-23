@@ -119,8 +119,8 @@ Detailed results with performance analysis and review options.
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/quiz-app.git
-   cd quiz-app
+   git clone https://github.com/AlokKumar-04/Quiz-Application.git
+   cd Quiz-Application
    ```
 
 2. **Create and activate virtual environment**
