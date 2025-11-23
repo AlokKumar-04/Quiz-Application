@@ -101,26 +101,15 @@
                     <small class="text-muted">Score</small>
                 </div>
                 <div class="col-md-3">
-                    <h3 class="text-success">{{ answers|length }}</h3>
+                    <h3 class="text-success">{{ total_questions }}</h3>
                     <small class="text-muted">Total Questions</small>
                 </div>
                 <div class="col-md-3">
-                    <h3 class="text-success">
-                        {% with correct_count=0 %}
-                        {% for answer in answers %}
-                            {% if answer.is_correct %}
-                                {% with correct_count=correct_count|add:1 %}{% endwith %}
-                            {% endif %}
-                        {% endfor %}
-                        {% endwith %}
-                        {{ answers|selectattr:"is_correct"|list|length }}
-                    </h3>
+                    <h3 class="text-success">{{ correct_answers }}</h3>
                     <small class="text-muted">Correct</small>
                 </div>
                 <div class="col-md-3">
-                    <h3 class="text-danger">
-                        {{ answers|length|add:"-"|add:answers|selectattr:"is_correct"|list|length }}
-                    </h3>
+                    <h3 class="text-danger">{{ incorrect_answers }}</h3>
                     <small class="text-muted">Incorrect</small>
                 </div>
             </div>

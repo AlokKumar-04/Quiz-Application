@@ -1,0 +1,110 @@
+{% extends 'quiz/base.html' %}
+{% load static %}
+
+{% block title %}Leaderboard - {{ quiz.title }}{% endblock %}
+
+{% block content %}
+<div class="container" style="max-width: 900px;">
+    <!-- Header -->
+    <div class="card mb-4">
+        <div class="card-header bg-warning text-dark">
+            <h3 class="mb-0"><i class="fas fa-trophy"></i> Leaderboard</h3>
+        </div>
+        <div class="card-body">
+            <h4>{{ quiz.title }}</h4>
+            <p class="text-muted mb-0">
+                <span class="badge bg-info me-2">{{ quiz.category.name }}</span>
+                <span class="badge bg-{{ quiz.difficulty }}">{{ quiz.get_difficulty_display }}</span>
+            </p>
+        </div>
+    </div>
+    
+    <!-- Leaderboard Table -->
+    <div class="card">
+        <div class="card-header bg-primary text-white">
+            <h5 class="mb-0"><i class="fas fa-ranking-star"></i> Top Performers</h5>
+        </div>
+        <div class="card-body p-0">
+            {% if top_attempts %}
+            <div class="table-responsive">
+                <table class="table table-hover mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th width="60">Rank</th>
+                            <th>User</th>
+                            <th>Score</th>
+                            <th>Percentage</th>
+                            <th>Time</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for attempt in top_attempts %}
+                        <tr {% if attempt.user == user %}class="table-primary"{% endif %}>
+                            <td class="text-center">
+                                {% if forloop.counter == 1 %}
+                                    <span class="badge bg-warning text-dark">
+                                        <i class="fas fa-trophy"></i> 1st
+                                    </span>
+                                {% elif forloop.counter == 2 %}
+                                    <span class="badge bg-secondary">
+                                        <i class="fas fa-medal"></i> 2nd
+                                    </span>
+                                {% elif forloop.counter == 3 %}
+                                    <span class="badge bg-bronze">
+                                        <i class="fas fa-medal"></i> 3rd
+                                    </span>
+                                {% else %}
+                                    <span class="badge bg-light text-dark">{{ forloop.counter }}</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                <strong>
+                                    {% if attempt.user == user %}
+                                        {{ attempt.user.username }} <span class="badge bg-primary">You</span>
+                                    {% else %}
+                                        {{ attempt.user.username }}
+                                    {% endif %}
+                                </strong>
+                            </td>
+                            <td>
+                                <strong>{{ attempt.score }}</strong> / {{ attempt.total_marks }}
+                            </td>
+                            <td>
+                                <span class="badge bg-{% if attempt.percentage >= 90 %}success{% elif attempt.percentage >= 70 %}warning{% else %}danger{% endif %}">
+                                    {{ attempt.percentage|floatformat:1 }}%
+                                </span>
+                            </td>
+                            <td>
+                                <small>{{ attempt.time_taken }}s</small>
+                            </td>
+                            <td>
+                                <small>{{ attempt.completed_at|date:"M d, Y" }}</small>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <div class="p-5 text-center">
+                <i class="fas fa-users-slash fa-3x text-muted mb-3"></i>
+                <p class="text-muted">No attempts yet. Be the first to take this quiz!</p>
+                <a href="{% url 'quiz:quiz_detail' quiz.id %}" class="btn btn-primary">
+                    <i class="fas fa-play"></i> Take Quiz
+                </a>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    
+    <div class="text-center mt-4">
+        <a href="{% url 'quiz:quiz_detail' quiz.id %}" class="btn btn-primary me-2">
+            <i class="fas fa-arrow-left"></i> Back to Quiz
+        </a>
+        <a href="{% url 'quiz:quiz_list' %}" class="btn btn-outline-secondary">
+            <i class="fas fa-list"></i> All Quizzes
+        </a>
+    </div>
+</div>
+{% endblock %}

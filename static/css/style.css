@@ -1,0 +1,319 @@
+/* General Styles */
+:root {
+    --primary-color: #0d6efd;
+    --success-color: #198754;
+    --danger-color: #dc3545;
+    --warning-color: #ffc107;
+    --info-color: #0dcaf0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+}
+
+/* Navbar */
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+/* Cards */
+.card {
+    border: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.hover-shadow:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.quiz-card {
+    border-left: 4px solid var(--primary-color);
+}
+
+.category-card {
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.category-card:hover {
+    background-color: #f8f9fa;
+    border-color: var(--primary-color);
+}
+
+/* Hero Section */
+.hero-section {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.stat-card {
+    padding: 20px;
+    transition: transform 0.3s;
+}
+
+.stat-card:hover {
+    transform: scale(1.05);
+}
+
+/* Step Cards */
+.step-number {
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Quiz Meta */
+.quiz-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.quiz-info small {
+    display: inline-block;
+    margin-right: 15px;
+}
+
+/* Info Boxes */
+.info-box {
+    padding: 15px;
+    border-radius: 8px;
+    background-color: #f8f9fa;
+    transition: all 0.3s;
+}
+
+.info-box:hover {
+    background-color: #e9ecef;
+    transform: scale(1.05);
+}
+
+/* Metrics */
+.metric-box {
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+}
+
+/* Dashboard */
+.stat-item {
+    font-size: 14px;
+}
+
+.profile-img img {
+    object-fit: cover;
+    border: 3px solid var(--primary-color);
+}
+
+/* Achievements */
+.achievement {
+    padding: 20px;
+    border-radius: 10px;
+    transition: all 0.3s;
+}
+
+.achievement.active {
+    background-color: #fff3cd;
+    border: 2px solid var(--warning-color);
+    color: #856404;
+}
+
+.achievement.inactive {
+    background-color: #f8f9fa;
+    border: 2px dashed #dee2e6;
+    color: #6c757d;
+    opacity: 0.6;
+}
+
+.achievement i {
+    color: var(--warning-color);
+}
+
+.achievement.inactive i {
+    color: #adb5bd;
+}
+
+/* Timer */
+.timer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+/* Quiz Taking */
+.question-section {
+    animation: fadeIn 0.3s;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Choices */
+.choice-item {
+    transition: all 0.3s;
+}
+
+/* Tables */
+.table-responsive {
+    border-radius: 0.25rem;
+}
+
+.table tbody tr {
+    transition: background-color 0.3s;
+}
+
+.table tbody tr:hover {
+    background-color: #f8f9fa;
+}
+
+/* Buttons */
+.btn {
+    transition: all 0.3s;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Footer */
+footer {
+    margin-top: auto;
+}
+
+footer a {
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+footer a:hover {
+    color: var(--primary-color) !important;
+}
+
+/* Badges */
+.badge {
+    padding: 0.5em 0.75em;
+    font-weight: 500;
+}
+
+/* Progress Bar */
+.progress {
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    transition: width 0.6s ease;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .hero-section h1 {
+        font-size: 2rem;
+    }
+
+    .stat-card {
+        padding: 15px;
+    }
+
+    .step-number {
+        width: 50px;
+        height: 50px;
+        line-height: 50px;
+        font-size: 20px;
+    }
+
+    .table {
+        font-size: 0.875rem;
+    }
+}
+
+/* Animations */
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+.pulse {
+    animation: pulse 2s infinite;
+}
+
+/* Utilities */
+.text-bronze {
+    color: #cd7f32;
+}
+
+.bg-bronze {
+    background-color: #cd7f32;
+    color: white;
+}
+
+/* Sticky Elements */
+.sticky-top {
+    position: sticky;
+    top: 20px;
+    z-index: 1020;
+}
+
+/* Loading States */
+.loading {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255, 255, 255, .3);
+    border-radius: 50%;
+    border-top-color: #fff;
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Print Styles */
+@media print {
+
+    .navbar,
+    footer,
+    .btn,
+    .card-footer {
+        display: none !important;
+    }
+
+    .card {
+        box-shadow: none;
+        border: 1px solid #dee2e6;
+    }
+}

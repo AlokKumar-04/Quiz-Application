@@ -100,31 +100,29 @@
             <h5 class="mb-0"><i class="fas fa-chart-line"></i> Performance Analysis</h5>
         </div>
         <div class="card-body">
-            {% with correct=attempt.answers.filter|length total=attempt.answers.count %}
             <div class="row text-center">
                 <div class="col-md-4">
                     <div class="mb-3">
                         <i class="fas fa-check-circle fa-3x text-success"></i>
-                        <h3 class="mt-2">{{ attempt.answers.filter.is_correct=True.count }}</h3>
+                        <h3 class="mt-2">{{ correct_answers }}</h3>
                         <p class="text-muted">Correct Answers</p>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="mb-3">
                         <i class="fas fa-times-circle fa-3x text-danger"></i>
-                        <h3 class="mt-2">{{ attempt.answers.count|add:"-"|add:attempt.answers.filter.is_correct=True.count }}</h3>
+                        <h3 class="mt-2">{{ incorrect_answers }}</h3>
                         <p class="text-muted">Incorrect Answers</p>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="mb-3">
                         <i class="fas fa-question-circle fa-3x text-primary"></i>
-                        <h3 class="mt-2">{{ attempt.answers.count }}</h3>
+                        <h3 class="mt-2">{{ total_answers }}</h3>
                         <p class="text-muted">Total Questions</p>
                     </div>
                 </div>
             </div>
-            {% endwith %}
         </div>
     </div>
     

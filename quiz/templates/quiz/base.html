@@ -58,7 +58,14 @@
                         </li>
                     {% else %}
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'login' %}">Login</a>
+                            <a class="nav-link" href="{% url 'login' %}">
+                                <i class="fas fa-sign-in-alt"></i> Login
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-success text-white ms-2" href="{% url 'register' %}">
+                                <i class="fas fa-user-plus"></i> Register
+                            </a>
                         </li>
                     {% endif %}
                 </ul>

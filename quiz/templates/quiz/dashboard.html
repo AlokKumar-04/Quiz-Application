@@ -1,0 +1,247 @@
+{% extends 'quiz/base.html' %}
+{% load static %}
+
+{% block title %}Dashboard - Quiz Application{% endblock %}
+
+{% block content %}
+<div class="row">
+    <!-- User Profile Card -->
+    <div class="col-md-4 mb-4">
+        <div class="card text-center">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0"><i class="fas fa-user"></i> Profile</h5>
+            </div>
+            <div class="card-body">
+                <div class="profile-img mb-3">
+                    {% if profile.profile_picture %}
+                        <img src="{{ profile.profile_picture.url }}" alt="Profile" 
+                             class="rounded-circle" width="100" height="100">
+                    {% else %}
+                        <i class="fas fa-user-circle fa-5x text-primary"></i>
+                    {% endif %}
+                </div>
+                <h4>{{ user.username }}</h4>
+                <p class="text-muted mb-0">{{ user.email }}</p>
+                <small class="text-muted">Member since {{ user.date_joined|date:"M Y" }}</small>
+            </div>
+        </div>
+        
+        <!-- Quick Stats -->
+        <div class="card mt-3">
+            <div class="card-header bg-info text-white">
+                <h6 class="mb-0"><i class="fas fa-chart-line"></i> Quick Stats</h6>
+            </div>
+            <div class="card-body">
+                <div class="stat-item mb-3 pb-3 border-bottom">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span><i class="fas fa-book text-primary"></i> Total Quizzes</span>
+                        <strong class="h5 mb-0">{{ total_attempts }}</strong>
+                    </div>
+                </div>
+                <div class="stat-item mb-3 pb-3 border-bottom">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span><i class="fas fa-check-circle text-success"></i> Passed</span>
+                        <strong class="h5 mb-0 text-success">{{ passed_attempts }}</strong>
+                    </div>
+                </div>
+                <div class="stat-item mb-3 pb-3 border-bottom">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span><i class="fas fa-times-circle text-danger"></i> Failed</span>
+                        <strong class="h5 mb-0 text-danger">{{ failed_attempts }}</strong>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span><i class="fas fa-percentage text-warning"></i> Avg Score</span>
+                        <strong class="h5 mb-0 text-warning">{{ avg_score }}%</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Main Content -->
+    <div class="col-md-8">
+        <!-- Performance Overview -->
+        <div class="card mb-4">
+            <div class="card-header bg-success text-white">
+                <h5 class="mb-0"><i class="fas fa-trophy"></i> Performance Overview</h5>
+            </div>
+            <div class="card-body">
+                <div class="row text-center">
+                    <div class="col-md-3 col-6 mb-3">
+                        <div class="metric-box">
+                            <i class="fas fa-clipboard-list fa-2x text-primary mb-2"></i>
+                            <h3 class="mb-0">{{ total_attempts }}</h3>
+                            <small class="text-muted">Total Attempts</small>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-6 mb-3">
+                        <div class="metric-box">
+                            <i class="fas fa-check-double fa-2x text-success mb-2"></i>
+                            <h3 class="mb-0">{{ passed_attempts }}</h3>
+                            <small class="text-muted">Passed</small>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-6 mb-3">
+                        <div class="metric-box">
+                            <i class="fas fa-percentage fa-2x text-warning mb-2"></i>
+                            <h3 class="mb-0">{{ avg_score }}%</h3>
+                            <small class="text-muted">Average</small>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-6 mb-3">
+                        <div class="metric-box">
+                            <i class="fas fa-star fa-2x text-info mb-2"></i>
+                            <h3 class="mb-0">{{ profile.total_score }}</h3>
+                            <small class="text-muted">Total Score</small>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Success Rate -->
+                {% if total_attempts > 0 %}
+                <div class="mt-3">
+                    <label class="form-label mb-2">Success Rate</label>
+                    <div class="progress" style="height: 25px;">
+                        <div class="progress-bar bg-success" role="progressbar" 
+                             style="width: {% widthratio passed_attempts total_attempts 100 %}%">
+                            {% widthratio passed_attempts total_attempts 100 %}%
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        
+        <!-- Recent Activity -->
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0"><i class="fas fa-history"></i> Recent Quiz Attempts</h5>
+            </div>
+            <div class="card-body p-0">
+                {% if recent_attempts %}
+                <div class="table-responsive">
+                    <table class="table table-hover mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Quiz</th>
+                                <th>Score</th>
+                                <th>Percentage</th>
+                                <th>Status</th>
+                                <th>Date</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for attempt in recent_attempts %}
+                            <tr>
+                                <td>
+                                    <strong>{{ attempt.quiz.title }}</strong><br>
+                                    <small class="text-muted">
+                                        <i class="fas fa-layer-group"></i> {{ attempt.quiz.category.name }}
+                                    </small>
+                                </td>
+                                <td>
+                                    <strong>{{ attempt.score }}</strong>/{{ attempt.total_marks }}
+                                </td>
+                                <td>
+                                    <span class="badge bg-{% if attempt.percentage >= 80 %}success{% elif attempt.percentage >= 60 %}warning{% else %}danger{% endif %}">
+                                        {{ attempt.percentage|floatformat:1 }}%
+                                    </span>
+                                </td>
+                                <td>
+                                    {% if attempt.is_passed %}
+                                        <span class="badge bg-success">
+                                            <i class="fas fa-check"></i> Passed
+                                        </span>
+                                    {% else %}
+                                        <span class="badge bg-danger">
+                                            <i class="fas fa-times"></i> Failed
+                                        </span>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    <small>{{ attempt.completed_at|date:"M d, Y" }}</small><br>
+                                    <small class="text-muted">{{ attempt.completed_at|time:"H:i" }}</small>
+                                </td>
+                                <td>
+                                    <div class="btn-group btn-group-sm">
+                                        <a href="{% url 'quiz:quiz_result' attempt.id %}" 
+                                           class="btn btn-outline-primary" title="View Result">
+                                            <i class="fas fa-chart-bar"></i>
+                                        </a>
+                                        <a href="{% url 'quiz:quiz_review' attempt.id %}" 
+                                           class="btn btn-outline-info" title="Review Answers">
+                                            <i class="fas fa-eye"></i>
+                                        </a>
+                                        <a href="{% url 'quiz:quiz_detail' attempt.quiz.id %}" 
+                                           class="btn btn-outline-secondary" title="Retake">
+                                            <i class="fas fa-redo"></i>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% else %}
+                <div class="p-4 text-center">
+                    <i class="fas fa-inbox fa-3x text-muted mb-3"></i>
+                    <p class="text-muted">No quiz attempts yet. Start taking quizzes!</p>
+                    <a href="{% url 'quiz:quiz_list' %}" class="btn btn-primary">
+                        <i class="fas fa-play"></i> Browse Quizzes
+                    </a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Achievement Section (Optional) -->
+{% if total_attempts > 0 %}
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header bg-warning text-dark">
+                <h5 class="mb-0"><i class="fas fa-medal"></i> Achievements</h5>
+            </div>
+            <div class="card-body">
+                <div class="row text-center">
+                    <div class="col-md-3 col-6 mb-3">
+                        <div class="achievement {% if total_attempts >= 1 %}active{% else %}inactive{% endif %}">
+                            <i class="fas fa-star fa-3x mb-2"></i>
+                            <p class="mb-0"><strong>First Steps</strong></p>
+                            <small class="text-muted">Complete 1 quiz</small>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-6 mb-3">
+                        <div class="achievement {% if total_attempts >= 5 %}active{% else %}inactive{% endif %}">
+                            <i class="fas fa-fire fa-3x mb-2"></i>
+                            <p class="mb-0"><strong>On Fire</strong></p>
+                            <small class="text-muted">Complete 5 quizzes</small>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-6 mb-3">
+                        <div class="achievement {% if passed_attempts >= 10 %}active{% else %}inactive{% endif %}">
+                            <i class="fas fa-trophy fa-3x mb-2"></i>
+                            <p class="mb-0"><strong>Champion</strong></p>
+                            <small class="text-muted">Pass 10 quizzes</small>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-6 mb-3">
+                        <div class="achievement {% if avg_score >= 90 %}active{% else %}inactive{% endif %}">
+                            <i class="fas fa-crown fa-3x mb-2"></i>
+                            <p class="mb-0"><strong>Perfectionist</strong></p>
+                            <small class="text-muted">90% average score</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endblock %}

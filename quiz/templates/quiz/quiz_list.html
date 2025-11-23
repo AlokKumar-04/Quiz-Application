@@ -17,7 +17,7 @@
                     <div class="mb-3">
                         <label class="form-label">Search</label>
                         <input type="text" name="search" class="form-control" 
-                               placeholder="Search quizzes..." value="{{ search_query }}">
+                               placeholder="Search quizzes..." value="{% if search_query %}{{ search_query }}{% endif %}">
                     </div>
                     
                     <!-- Category Filter -->
@@ -27,7 +27,7 @@
                             <option value="">All Categories</option>
                             {% for category in categories %}
                             <option value="{{ category.id }}" 
-                                    {% if selected_category == category.id|stringformat:"s" %}selected{% endif %}>
+                                    {% if selected_category == category.id %}selected{% endif %}>
                                 {{ category.name }}
                             </option>
                             {% endfor %}
