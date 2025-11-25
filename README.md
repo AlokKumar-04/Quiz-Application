@@ -119,8 +119,8 @@ Detailed results with performance analysis and review options.
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/AlokKumar-04/Quizz-Application.git
-   cd Quizz-Application
+   git clone https://github.com/AlokKumar-04/Quiz-Application.git
+   cd Quiz-Application
    ```
 
 2. **Create and activate virtual environment**
@@ -557,24 +557,14 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 👥 Authors
 
-- **Your Name** - *Initial work* - [YourGitHub](https://github.com/AlokKumar-04)
-
----
-
-## 🙏 Acknowledgments
-
-- Django Documentation
-- Bootstrap Documentation
-- Font Awesome Icons
-- Stack Overflow Community
-- All contributors and testers
+- **Alok Kumar Panda** - *Initial work* - [GitHub](https://github.com/AlokKumar-04)
 
 ---
 
 ## 📞 Contact & Support
 
-- **Email**: your.email@example.com
-- **GitHub**: [@yourusername](https://github.com/AlokKumar-04)
+- **Email**: alokkumarpanda72@gmail.com
+- **GitHub**: [@AlokKumar-04](https://github.com/AlokKumar-04)
 - **Issues**: [GitHub Issues](https://github.com/AlokKumar-04/Quizz-Application/issues)
 
 ---
